@@ -1,10 +1,39 @@
 import React from 'react';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import PizzaList from '../PizzaList/PizzaList';
+
 import './App.css';
 
-function App() {
+function App() { 
+const dispatch = useDispatch()
+
+useEffect(()=>{
+  fetchpizza()
+}, [])
+
+const fetchpizza = ()=>{
+  axios({
+    method:'GET',
+    url: '/api/pizza'
+  })
+  .then((response)=>{
+    dispatch({
+      type: 'GET_PIZZA',
+      payload: response.data
+    })
+    .catch((error)=>{
+      console.log("failed in GET jsx", error )
+    })
+
+  })
+
+}
 
   return (
+    
     <div className='App'>
       <header className='App-header'>
         <h1 className='App-title'>Prime Pizza</h1>
@@ -12,8 +41,14 @@ function App() {
   
       <img src='images/pizza_photo.png' />
       <p>Pizza is great.</p>
+    <PizzaList fetchpizza={fetchpizza}/>
+    
+    
+    
+
   
     </div>
+    
   );
 }
 
