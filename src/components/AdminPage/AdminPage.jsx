@@ -1,11 +1,20 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios'
+import axios from 'axios';
+import ItemList from './ItemList';
 
-import ItemList
-
-
-//import getOrders()
+const getOrders = () => (dispatch) => {
+    axios.get('/api/orders')
+        .then(response => {
+            dispatch({
+                type: 'SET_ORDERS',
+                payload: response.data,
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching orders:', error);
+        });
+};
 
 const AdminPage = () => {
     const dispatch = useDispatch();
@@ -15,11 +24,7 @@ const AdminPage = () => {
         dispatch(getOrders());
     }, [dispatch]);
 
-
-
-
     return (
-        <>
         <div>
             <h1>Prime Pizza Orders</h1>
             <h2>Admin Page</h2>
@@ -36,7 +41,6 @@ const AdminPage = () => {
                 <ItemList orders={orders} />
             </table>
         </div>
-        </>
     );
 };
 

@@ -42,7 +42,7 @@ const fetchpizza = ()=>{
       <img src='images/pizza_photo.png' />
       <p>Pizza is great.</p>
     <PizzaList fetchpizza={fetchpizza}/>
-    
+
     
     
 

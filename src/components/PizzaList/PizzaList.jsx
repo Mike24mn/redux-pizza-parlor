@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import axios from 'axios';
 
 const PizzaList = ({fetchpizza})=>{
 const pizza = useSelector(store => store.Pizzaparty)
@@ -13,6 +14,19 @@ const addPizza = (pizzaId)=>{
         type: "ADD_PIZZA",
         payload: pizzaId
     })
+
+    const getOrders = () => (dispatch) => {
+      axios.get('/api/orders')
+          .then(response => {
+              dispatch({
+                  type: 'SET_ORDERS',
+                  payload: response.data,
+              });
+          })
+          .catch(error => {
+              console.error('Error fetching orders:', error);
+          });
+  };
 
 }
 
