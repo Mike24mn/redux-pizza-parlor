@@ -24,11 +24,12 @@ const fetchpizza = ()=>{
       type: 'GET_PIZZA',
       payload: response.data
     })
-    .catch((error)=>{
-      console.log("failed in GET jsx", error )
-    })
-
+    
   })
+  .catch((error)=>{
+    console.log("failed in GET jsx", error )
+  })
+
 
 }
 
