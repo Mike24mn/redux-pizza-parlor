@@ -81,6 +81,9 @@ const handleNext = () => {
       <p>Welcome, Pizza is greatness.</p>
       <Router>
         <nav>
+          <Link to="/AdminPage">
+            <button>ADMIN PORTAL</button>
+          </Link>
           <Link to="/selectpizza">
             <button>Build Pizza</button>
           </Link>
