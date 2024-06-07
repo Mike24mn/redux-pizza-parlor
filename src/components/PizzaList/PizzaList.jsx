@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 
 const PizzaList = ({fetchpizza})=>{
 const pizza = useSelector(store => store.Pizzaparty)
+const line = useSelector(store=>store.line)
 const dispatch = useDispatch()
 
 const addPizza = (pizzaId)=>{
@@ -21,6 +22,7 @@ return(
         <div>
         <table>
           <tbody>
+         
             {pizza.map((item) => (
               <tr key={item.id}>
                 <td>
