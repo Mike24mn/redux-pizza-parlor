@@ -1,55 +1,97 @@
-import React from 'react';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import PizzaList from '../PizzaList/PizzaList';
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import PizzaList from "../PizzaList/PizzaList";
+import React from "react";
+import {
+  HashRouter as Router,
+  Route,
+  Link,
+  useHistory,
+} from "react-router-dom";
 
-import './App.css';
+import "./App.css";
+import CheckoutForm from "../CheckoutForm/CheckoutForm";
+import CustomerInfo from "../CustomerInfo/CustomerInfo";
+import store from "../../redux/store";
 
-function App() { 
-const dispatch = useDispatch()
+function App({Pizzaparty}) {
 
-useEffect(()=>{
-  fetchpizza()
-}, [])
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-const fetchpizza = ()=>{
-  axios({
-    method:'GET',
-    url: '/api/pizza'
-  })
-  .then((response)=>{
-    dispatch({
-      type: 'GET_PIZZA',
-      payload: response.data
+  const pizzaList = useSelector(store => store.Pizzaparty)
+
+  const [price, setPrice] = useState([]);
+
+
+
+  useEffect(() => {
+    fetchpizza();
+  }, []);
+
+  const fetchpizza = () => {
+    axios({
+      method: "GET",
+      url: "/api/pizza",
     })
-    
-  })
-  .catch((error)=>{
-    console.log("failed in GET jsx", error )
-  })
+      .then((response) => {
+        dispatch({
+          type: "GET_PIZZA",
+          payload: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log("failed in GET jsx", error);
+      });
+  };
 
+  /*
 
+const handleNext = () => {
+  alert("About to go to customer info page!!!")
+  // change location url if needed!!! depending on what we
+  // name selectpizza page url
+  history.push("/CustomerInfo")
 }
+  
+
+  function pizzaTotal() {
+    console.log("in pizzaTotal");
+  }
+
+  pizzaTotal()
+*/
+
 
   return (
-    
-    <div className='App'>
-      <header className='App-header'>
-        <h1 className='App-title'>Prime Pizza</h1>
+    <div className="App">
+      <header className="App-header">
+        <h1 className="App-title">Prime Pizza</h1>
       </header>
-  
-      <img src='images/pizza_photo.png' />
+      <h1>
+        {price.map((pizza) => (
+          <h2 key={pizza.id}>
+            <h3>{pizza.price}</h3>
+          </h2>
+        ))}
+      </h1>
+
+      <img src="images/pizza_photo.png" />
       <p>Pizza is great.</p>
-    <PizzaList fetchpizza={fetchpizza}/>
-
-    
-    
-
-  
+      <PizzaList fetchpizza={fetchpizza} />
+      <Router>
+        <nav>
+          <Link to="/CustomerInfo">
+            <button>Next</button>
+          </Link>
+        </nav>
+        <Route exact path="/CustomerInfo">
+        <CustomerInfo />
+       </Route>
+      </Router>
     </div>
-    
   );
 }
 

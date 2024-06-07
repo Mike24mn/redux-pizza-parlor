@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from 'react';
 import axios from 'axios'
-import {
-    HashRouter as Router,
-    Route,
-    Link,
-    useHistory,
-  } from "react-router-dom";
+import App from "../App/App";
 
   // WILL NEED TO IMPORT OTHER PAGES HERE AS WELL
   // IF I WANT TO ROUTE TO THEM  ^^^

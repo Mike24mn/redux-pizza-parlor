@@ -29,6 +29,14 @@ const addPizza = (pizzaId)=>{
           });
   };
 
+  function pizzaTotal() {
+    console.log("in pizzaTotal");
+    
+
+  }
+
+  pizzaTotal()
+
 }
 
 return(
