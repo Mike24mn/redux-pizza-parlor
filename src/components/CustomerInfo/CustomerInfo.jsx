@@ -1,6 +1,8 @@
 import { useState } from "react"
 import axios from "axios"
 import { useDispatch } from "react-redux"
+import { Link } from 'react-router-dom';
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const CustomerInfo = () => {
     const [NewName, setNewName] = useState("")
@@ -9,7 +11,7 @@ const CustomerInfo = () => {
     const [newZip, setNewZip] = useState("")
     const [newType, setNewType] = useState(true)
 
-
+    const history = useHistory()
 
     const dispatch = useDispatch()
 
@@ -24,13 +26,14 @@ const CustomerInfo = () => {
                 dispatch({
                     type: 'ADD_INFO',
                     payload: payload
-
+                    
                 })
                 setNewName("")
                 SetNewAddress("")
                 setNewCity("")
                 setNewZip("")
                 setNewType(false)
+                history.push('/checkout')
             })
             .catch((error) => {
                 console.error("failed in axios POST JSX", error)
@@ -79,9 +82,9 @@ const CustomerInfo = () => {
 
                   </form>
 
-                    <Link to="/checkout">
-                    <button>Next</button>
-                    </Link>
+                    
+                   
+                    
             </section>
 
 
