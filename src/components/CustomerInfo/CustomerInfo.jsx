@@ -42,7 +42,7 @@ const CustomerInfo = () => {
     return (
         <>
             <section>
-                <h2> Customer Infoormation </h2>
+                <h2> Customer Information </h2>
                 <form onSubmit={handleSubmit}>
                     <input
                         type="text"

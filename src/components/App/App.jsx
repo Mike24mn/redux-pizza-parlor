@@ -36,26 +36,26 @@ const fetchpizza = ()=>{
 }
 
   return (
-    <Router>
+   
     <div className='App'>
       <header className='App-header'>
         <h1 className='App-title'>Prime Pizza</h1>
       </header>
 
-      <Link to="/api/CustomerInfo">orders</Link>
+      
   
       <img src='images/pizza_photo.png' />
       <p>Pizza is great.</p>
     <PizzaList fetchpizza={fetchpizza}/>
-      <Route path="/api/CustomerInfo">
+      
     <CustomerInfo />
-    </Route>
+    
     
     
 
   
     </div>
-    </Router>
+   
   );
 }
 
