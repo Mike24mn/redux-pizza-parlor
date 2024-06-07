@@ -1,6 +1,7 @@
 import { useState } from "react"
 import axios from "axios"
 import { useDispatch } from "react-redux"
+import App from "../App/App"
 
 const CustomerInfo = () => {
     const [NewName, setNewName] = useState("")
@@ -9,7 +10,7 @@ const CustomerInfo = () => {
     const [newZip, setNewZip] = useState("")
     const [newType, setNewType] = useState(true)
 
-
+    
 
     const dispatch = useDispatch()
 
@@ -39,7 +40,7 @@ const CustomerInfo = () => {
     return (
         <>
             <section>
-                <h2> Customer Infoormation </h2>
+                <h2> Customer Information </h2>
                 <form onSubmit={handleSubmit}>
                     <input
                         type="text"
@@ -79,9 +80,6 @@ const CustomerInfo = () => {
 
                   </form>
 
-                    <Link to="/checkout">
-                    <button>Next</button>
-                    </Link>
             </section>
 
 

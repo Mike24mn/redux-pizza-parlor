@@ -77,18 +77,28 @@ const handleNext = () => {
           </h2>
         ))}
       </h1>
-
       <img src="images/pizza_photo.png" />
-      <p>Pizza is great.</p>
-      <PizzaList fetchpizza={fetchpizza} />
+      <p>Welcome, Pizza is greatness.</p>
       <Router>
         <nav>
+          <Link to="/selectpizza">
+            <button>Build Pizza</button>
+          </Link>
           <Link to="/CustomerInfo">
-            <button>Next</button>
+            <button>Delivery Details</button>
+          </Link>
+          <Link to="/CheckoutForm">
+            <button>Checkout</button>
           </Link>
         </nav>
         <Route exact path="/CustomerInfo">
         <CustomerInfo />
+       </Route>
+       <Route exact path="/CheckoutForm">
+        <CheckoutForm />
+       </Route>
+       <Route exact path="/selectpizza">
+       <PizzaList fetchpizza={fetchpizza} />
        </Route>
       </Router>
     </div>
